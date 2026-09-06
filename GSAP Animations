@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="hi-en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ultimate GSAP Book — Hinglish</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/night-owl.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<style>
+  :root{
+    --bg: #0b0f0d;
+    --panel: #10201a;
+    --panel-2: #0e1713;
+    --green: #88CE02;
+    --green-dim: #5a8c05;
+    --mint: #6be3c4;
+    --violet: #b39ddb;
+    --amber: #ffb454;
+    --text: #e7f3ea;
+    --text-dim: #9db3a8;
+    --border: #1f3a2c;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background: radial-gradient(1200px 600px at 10% -10%, #16321f 0%, var(--bg) 55%) fixed;
+    color: var(--text);
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.65;
+    padding: 0 0 80px;
+  }
+  .wrap{
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 48px 24px;
+  }
+  .cover{
+    padding: 40px 32px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #123321 0%, #0b1a12 100%);
+    border: 1px solid var(--border);
+    margin-bottom: 48px;
+  }
+  .cover .tag{
+    color: var(--green);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+  }
+  .cover h1{
+    font-size: 2.2rem;
+    margin: 10px 0 6px;
+    color: #fff;
+    line-height: 1.15;
+  }
+  .cover .author{
+    color: var(--text-dim);
+    margin-bottom: 18px;
+    font-size: 0.95rem;
+  }
+  .cover p{
+    color: var(--text-dim);
+    margin: 0;
+  }
+  .cover strong{ color: var(--mint); }
+
+  h1.part{
+    font-size: 1.9rem;
+    color: #fff;
+    border-bottom: 2px solid var(--green);
+    padding-bottom: 10px;
+    margin-top: 64px;
+    margin-bottom: 24px;
+  }
+  h2{
+    font-size: 1.35rem;
+    color: var(--green);
+    margin-top: 40px;
+    margin-bottom: 14px;
+  }
+  h3{
+    font-size: 1.05rem;
+    color: var(--mint);
+    margin-top: 28px;
+  }
+  p{ color: var(--text); }
+  strong{ color: #fff; }
+  em{ color: var(--amber); font-style: italic; }
+
+  code:not(pre code){
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    color: var(--mint);
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    font-family: "Fira Code", ui-monospace, monospace;
+  }
+
+  pre{
+    background: #0d1b13 !important;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    overflow-x: auto;
+    margin: 16px 0 24px;
+    position: relative;
+  }
+  pre code.hljs{
+    background: transparent !important;
+    font-family: "Fira Code", ui-monospace, "SFMono-Regular", monospace;
+    font-size: 0.88rem;
+  }
+  .copy-btn{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 5px 10px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-family: "Inter", sans-serif;
+    transition: all 0.15s ease;
+    opacity: 0.75;
+  }
+  .copy-btn:hover{
+    background: var(--green);
+    color: #08150c;
+    border-color: var(--green);
+    opacity: 1;
+  }
+  .copy-btn.copied{
+    background: var(--mint);
+    color: #08150c;
+    border-color: var(--mint);
+  }
+  pre{ padding-top: 40px; }
+
+  table{
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0 28px;
+    background: var(--panel-2);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  th{
+    background: #143523;
+    color: var(--green);
+    text-align: left;
+    padding: 10px 14px;
+    font-size: 0.85rem;
+  }
+  td{
+    padding: 10px 14px;
+    border-top: 1px solid var(--border);
+    color: var(--text);
+    font-size: 0.92rem;
+  }
+  tr:nth-child(even) td{ background: rgba(255,255,255,0.02); }
+
+  .callout{
+    border-left: 4px solid var(--amber);
+    background: rgba(255,180,84,0.08);
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 18px 0;
+    color: var(--text);
+  }
+  .callout.tip{
+    border-left-color: var(--mint);
+    background: rgba(107,227,196,0.08);
+  }
+
+  .practice{
+    background: var(--panel);
+    border: 1px dashed var(--green-dim);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 28px 0;
+  }
+  .practice .h{
+    color: var(--green);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .practice ol{ margin: 0; padding-left: 20px; }
+  .practice li{ margin-bottom: 6px; color: var(--text); }
+
+  .project{
+    background: linear-gradient(135deg, #17301f 0%, #0d1a12 100%);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 24px;
+    margin: 32px 0;
+  }
+  .project .h{
+    color: var(--violet);
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 10px;
+  }
+
+  hr{
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 48px 0;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="cover">
+    <div class="tag">Hinglish Edition</div>
+    <h1>The Ultimate GSAP Book</h1>
+    <div class="author">by Swaraj Singh</div>
+    <p>GSAP (GreenSock Animation Platform) industry-standard JavaScript animation engine hai, jo 12 million se zyada live sites par use hota hai — Apple aur Google ke product pages se lekar Awwwards Site-of-the-Day winners tak. <strong>April 2025 mein, Webflow ne GreenSock ko acquire kar liya aur GSAP ko 100% free bana diya</strong> — har plugin jo pehle paid "Club GreenSock" membership maangta tha (ScrollTrigger, SplitText, MorphSVG, DrawSVG, Flip, ScrollSmoother, InertiaPlugin, aur bhi) ab ek simple <code>npm install gsap</code> ke saath free ship hota hai.</p>
+  </div>
+
+  <h1 class="part">Part 0 — Setup</h1>
+
+  <h2>0.1 GSAP kya hai?</h2>
+  <p>GSAP ek <strong>JavaScript animation engine</strong> hai, CSS framework nahi. Aap JavaScript likhte ho jo GSAP ko batati hai "is element ki is property ko, is value tak, itne duration mein, is ease ke saath animate karo" — aur baaki browser quirks, frame timing, math sab GSAP handle karta hai.</p>
+  <div class="callout tip"><strong>Rule of thumb:</strong> simple hover states aur micro-interactions ke liye plain CSS use karo. Jab <em>sequencing</em>, <em>scroll-linking</em>, <em>SVG motion</em>, ya <em>fine-grained runtime control</em> chahiye ho, tab GSAP ka use karo.</div>
+
+  <h3>2025 ka "GSAP ab free hai" story</h3>
+  <p>Ek dashak se zyada time tak, GSAP ka core free tha lekin uske best plugins (ScrollTrigger, SplitText, MorphSVG, DrawSVG, Flip, ScrollSmoother, InertiaPlugin) ke liye paid <strong>Club GreenSock</strong> membership chahiye hoti thi. <strong>April 2025</strong> mein, Webflow ne GreenSock ko acquire karke paywall poori tarah hata diya — ab har plugin open <code>gsap</code> npm package mein bundle hai aur commercial use ke liye free hai. Agar koi purana tutorial mile jo "Business Green" license kharidne ko bole, use ignore kar do — woh step ab exist hi nahi karta.</p>
+
+  <h2>0.2 GSAP Install Karna</h2>
+  <p>Option A — CDN (sabse fast tareeka shuru karne ka)</p>
+  <pre><code class="language-xml">&lt;script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  gsap.to(".box", { x: 300, rotation: 360, duration: 1 });
+&lt;/script&gt;</code></pre>
+
+  <p>Option B — npm (real projects ke liye recommended)</p>
+  <pre><code class="language-bash">npm install gsap</code></pre>
+  <pre><code class="language-javascript">import gsap from "gsap";
+
+gsap.to(".box", { x: 300, duration: 1 });</code></pre>
+
+  <p>Plugins individually import kiye jaate hain aur use se pehle ek baar <strong>register</strong> karna padta hai:</p>
+  <pre><code class="language-javascript">import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
+import { Flip } from "gsap/Flip";
+import { Draggable } from "gsap/Draggable";
+
+gsap.registerPlugin(ScrollTrigger, SplitText, Flip, Draggable);</code></pre>
+
+  <div class="practice">
+    <div class="h">🎯 Practice — Part 0</div>
+    <ol>
+      <li>Ek blank HTML file banao, CDN se GSAP load karo, aur ek <code>&lt;div&gt;</code> ko 2 seconds mein 300px right animate karo.</li>
+      <li>Apne shabdon mein likho — do situations jaha aap CSS <code>transition</code> ki jagah GSAP use karoge.</li>
+      <li>True ya False: 2026 tak, ScrollTrigger use karne ke liye paid membership chahiye. (Explain karo.)</li>
+    </ol>
+  </div>
+
+  <hr>
+  <h1 class="part">Part 1 — Foundations</h1>
+
+  <h2>1.1 Aapka pehla tween</h2>
+  <p>Ek <strong>tween</strong> ek single animation instance hota hai - ye kisi target ki ek ya zyada properties ko time ke saath change karta hai.</p>
+  <pre><code class="language-javascript">gsap.to(".box", {
+  x: 300,        // 300px right move karo
+  rotation: 360, // ek full turn spin karo
+  duration: 2,   // 2 seconds mein
+  ease: "power2.out"
+});</code></pre>
+
+  <h2>1.2 Char core tween methods</h2>
+  <table>
+    <tr><th>Method</th><th>Kya karta hai</th><th>Example</th></tr>
+    <tr><td><code>gsap.to()</code></td><td>Current values → given values tak animate karta hai</td><td><code>gsap.to(".box", { x: 300 })</code></td></tr>
+    <tr><td><code>gsap.from()</code></td><td>Given values → current values tak animate karta hai (entrance animations ke liye best)</td><td><code>gsap.from(".box", { opacity: 0, y: 50 })</code></td></tr>
+    <tr><td><code>gsap.fromTo()</code></td><td>Aap khud start aur end dono values set karte ho</td><td><code>gsap.fromTo(".box", {opacity:0}, {opacity:1, duration:1})</code></td></tr>
+    <tr><td><code>gsap.set()</code></td><td>Instantly values set karta hai, koi animation nahi</td><td><code>gsap.set(".box", { opacity: 0 })</code></td></tr>
+  </table>
+
+  <pre><code class="language-javascript">// from() "reveal" animations ke liye workhorse hai —
+// ye given state SE animate karke element ki natural/current
+// CSS state tak wapas leke aata hai.
+gsap.from(".card", {
+  y: 60,
+  opacity: 0,
+  duration: 0.8,
+  ease: "power3.out"
+});</code></pre>
+
+  <div class="callout">⚠️ <strong>Common pitfall:</strong> <code>from()</code> ke saath, GSAP starting values ko <strong>turant</strong> apply kar deta hai, jisse "from" state ka flash dikh sakta hai agar element pehle se visible tha. Isko <code>autoAlpha</code> (opacity + visibility) ke saath combine karo.</div>
+
+  <h2>1.3 Duration, delay, aur ease</h2>
+  <pre><code class="language-javascript">gsap.to(".box", {
+  x: 200,
+  duration: 1.5,   // seconds
+  delay: 0.3,      // shuru hone se pehle 0.3s wait karo
+  ease: "elastic.out(1, 0.4)"
+});</code></pre>
+
+  <h2>1.4 Kuch bhi tween karna - CSS, transforms, SVG, colors, plain objects</h2>
+  <pre><code class="language-javascript">// CSS transforms (GPU accelerated — hamesha top/left se better)
+gsap.to(".box", { x: 100, y: 50, scale: 1.5, rotation: 45 });
+
+// Regular CSS properties
+gsap.to(".box", { backgroundColor: "#ff6b6b", borderRadius: "50%" });
+
+// SVG attributes
+gsap.to("circle", { attr: { r: 80, fill: "#5227FF" } });
+
+// Plain JavaScript objects (sirf DOM elements nahi!)
+const counter = { value: 0 };
+gsap.to(counter, {
+  value: 100,
+  duration: 2,
+  onUpdate: () => console.log(Math.round(counter.value))
+});
+
+// Scroll position
+gsap.to(window, { scrollTo: { y: 500 }, duration: 1 });</code></pre>
+
+  <p>Ye last example beginners ke liye key insight hai: <strong>GSAP sirf DOM elements hi animate nahi karta.</strong> Ye <em>kisi bhi JavaScript object ki properties</em> ko animate karta hai.</p>
+
+  <h2>1.5 Relative values aur special string syntax</h2>
+  <pre><code class="language-javascript">gsap.to(".box", { x: "+=100" });   // current position se 100px aur right
+gsap.to(".box", { x: "-=50" });    // 50px left move karo
+gsap.to(".box", { rotation: "+=360" }); // ek aur full turn spin karo
+gsap.to(".box", { scale: "*=2" }); // current scale ko 2 se multiply karo
+gsap.to(".box", { x: "random(-100, 100)" }); // har baar random value</code></pre>
+
+  <pre><code class="language-javascript">gsap.to(".box", { width: "50%" });
+gsap.to(".box", { x: "10rem" });</code></pre>
+
+  <div class="practice">
+    <div class="h">🎯 Practice — Part 1</div>
+    <ol>
+      <li>Ek box ko <code>to()</code> se <code>x: 400, rotation: 720</code> tak, 3 seconds mein, <code>ease: "bounce.out"</code> ke saath animate karo.</li>
+      <li>Wahi animation <code>from()</code> use karke rewrite karo. Visually kya change hota hai?</li>
+      <li><code>fromTo()</code> use karke ek element ki opacity 0 se 1, aur scale 0.5 se 1 tak, 1 second mein animate karo.</li>
+      <li>Ek plain object <code>{ score: 0 }</code> banao aur uski <code>score</code> ko 3 seconds mein 500 tak tween karo.</li>
+      <li><code>x: "+=50"</code> aur <code>x: 50</code> mein kya farak hai?</li>
+    </ol>
+  </div>
+
+  <div class="project">
+    <div class="h">🛠️ Mini-Project 1: Hover Button Pack</div>
+    <p>3 buttons banao, har ek ka alag GSAP-powered hover effect ho:</p>
+    <pre><code class="language-xml">&lt;button class="btn btn--scale"&gt;Scale&lt;/button&gt;
+&lt;button class="btn btn--glow"&gt;Glow&lt;/button&gt;
+&lt;button class="btn btn--wiggle"&gt;Wiggle&lt;/button&gt;</code></pre>
+    <pre><code class="language-javascript">document.querySelectorAll(".btn").forEach(btn => {
+  btn.addEventListener("mouseenter", () => {
+    gsap.to(btn, { scale: 1.08, duration: 0.3, ease: "back.out(2)" });
+  });
+  btn.addEventListener("mouseleave", () => {
+    gsap.to(btn, { scale: 1, duration: 0.3, ease: "power2.out" });
+  });
+});</code></pre>
+    <p><strong>Aapka task:</strong> <code>.btn--glow</code> implement karo (<code>boxShadow</code> ya <code>backgroundColor</code> animate karke) aur <code>.btn--wiggle</code> (<code>rotation</code> ko aage-peeche animate karo, small timeline ya <code>yoyo: true, repeat: 1</code> use karke).</p>
+  </div>
+
+  <hr>
+  <h1 class="part">Part 2 — Core Mechanics</h1>
+
+  <h2>2.1 Easing deep-dive</h2>
+  <p>Easing sabse bada factor hai jo decide karta hai ki animation "cheap" feel karti hai ya "premium." Har ease (linear ko chhodkar) ke teen variants hote hain:</p>
+  <pre><code class="language-javascript">ease: "power1.in"    // slow shuru hoke accelerate hota hai — jaise girti hui cheez
+ease: "power1.out"   // fast shuru hoke decelerate hota hai — jaise ball rolling to a stop
+ease: "power1.inOut" // slow → fast → slow — jaise car accelerate aur brake karti hai</code></pre>
+
+  <table>
+    <tr><th>Ease family</th><th>Feel</th><th>Best for</th></tr>
+    <tr><td><code>power1</code>→<code>power4</code></td><td>Acceleration ki increasing intensity</td><td>General purpose UI motion (<code>power2.out</code> most common default)</td></tr>
+    <tr><td><code>back</code></td><td>Overshoot karke settle hota hai</td><td>Playful pop-ins, <code>back.out(1.7)</code></td></tr>
+    <tr><td><code>elastic</code></td><td>Springy overshoot with oscillation</td><td>Bouncy, toy-like UI</td></tr>
+    <tr><td><code>bounce</code></td><td>Literal bounce, ball jaisa</td><td>Physical/cartoon effects</td></tr>
+    <tr><td><code>circ</code></td><td>Sharp, circular acceleration curve</td><td>Dramatic reveals</td></tr>
+    <tr><td><code>expo</code></td><td>Bahut fast start/end</td><td>High-energy motion</td></tr>
+    <tr><td><code>sine</code></td><td>Gentle, smooth</td><td>Subtle looping/breathing animations</td></tr>
+    <tr><td><code>linear</code></td><td>Constant speed</td><td>Rotating loaders, progress bars</td></tr>
+  </table>
+
+  <pre><code class="language-javascript">gsap.to(".box", { x: 300, ease: "back.out(1.7)" });   // 1.7 = overshoot strength
+gsap.to(".box", { x: 300, ease: "elastic.out(1, 0.3)" }); // (amplitude, period)</code></pre>
+
+  <p>Fully custom curves ke liye <code>CustomEase</code> load karo (ye bhi ab free hai):</p>
+  <pre><code class="language-javascript">import { CustomEase } from "gsap/CustomEase";
+gsap.registerPlugin(CustomEase);
+
+CustomEase.create("myEase", "M0,0 C0.126,0.382 0.282,0.674 0.44,0.822 0.632,1.002 0.818,1 1,1");
+gsap.to(".box", { x: 300, ease: "myEase" });</code></pre>
+
+  <div class="callout tip">💡 <strong>Rule of thumb:</strong> 90% UI motion ke liye <code>power2.out</code> ya <code>power3.out</code> use karo. <code>back</code>/<code>elastic</code> kam use karo — overuse site ko gimmicky feel karati hai.</div>
+
+  <h2>2.2 Stagger</h2>
+  <pre><code class="language-javascript">// Simple: har element ke beech 0.1s
+gsap.from(".card", { opacity: 0, y: 40, stagger: 0.1 });</code></pre>
+
+  <pre><code class="language-javascript">gsap.from(".card", {
+  opacity: 0,
+  y: 40,
+  stagger: {
+    each: 0.08,
+    from: "center",     // "start" | "end" | "center" | "edges" | "random" | index
+    grid: "auto",        // 2D stagger ke liye grid auto-detect
+    ease: "power2.inOut"
+  }
+});</code></pre>
+
+  <table>
+    <tr><th>Property</th><th>Kya karta hai</th></tr>
+    <tr><td><code>each</code></td><td>har element ke start ke beech seconds</td></tr>
+    <tr><td><code>amount</code></td><td>sabhi elements mein spread total seconds</td></tr>
+    <tr><td><code>from</code></td><td>wave kaha se originate hoti hai</td></tr>
+    <tr><td><code>grid</code></td><td><code>[rows, cols]</code> ya <code>"auto"</code> 2D staggers ke liye</td></tr>
+    <tr><td><code>axis</code></td><td>stagger direction ko <code>"x"</code> ya <code>"y"</code> tak limit karo</td></tr>
+  </table>
+
+  <h2>2.3 Timelines - real power tool</h2>
+  <pre><code class="language-javascript">const tl = gsap.timeline({ defaults: { duration: 0.6, ease: "power2.out" } });
+
+tl.from(".hero-title", { opacity: 0, y: 40 })
+  .from(".hero-subtitle", { opacity: 0, y: 20 })
+  .from(".hero-cta", { opacity: 0, scale: 0.8 })
+  .from(".hero-image", { opacity: 0, x: 60 }, "-=0.4");</code></pre>
+
+  <h2>2.4 Position parameter - sequencing superpower</h2>
+  <pre><code class="language-javascript">tl.to(".a", { x: 100 })
+  .to(".b", { x: 100 }, "-=0.3")   // 0.3s pehle start (overlap)
+  .to(".c", { x: 100 }, "+=0.2")   // 0.2s baad start (gap)
+  .to(".d", { x: 100 }, 0)         // absolute 0-second mark
+  .to(".e", { x: 100 }, "<")       // previous jaisa hi start time
+  .to(".f", { x: 100 }, "myLabel"); // ek named label par start</code></pre>
+
+  <pre><code class="language-javascript">tl.addLabel("start")
+  .to(".a", { x: 100 })
+  .addLabel("middle")
+  .to(".b", { x: 100 })
+  .to(".c", { opacity: 1 }, "middle"); // .c exactly .b ke start time par</code></pre>
+
+  <table>
+    <tr><th>Syntax</th><th>Matlab</th></tr>
+    <tr><td><code>"+=1"</code></td><td>previous ke end ke 1 second baad (gap)</td></tr>
+    <tr><td><code>"-=1"</code></td><td>previous ke end se 1 second pehle (overlap)</td></tr>
+    <tr><td><code>0.5</code></td><td>absolute time, timeline ke start se 0.5s</td></tr>
+    <tr><td><code>"&lt;"</code></td><td>previous jaisa hi start time</td></tr>
+    <tr><td><code>"&lt;0.2"</code></td><td>previous start hone ke 0.2s baad</td></tr>
+    <tr><td><code>"myLabel"</code></td><td>ek named label par</td></tr>
+  </table>
+
+  <h2>2.5 Control methods aur playback</h2>
+  <pre><code class="language-javascript">const tl = gsap.timeline({ paused: true });
+tl.to(".box", { x: 300, duration: 1 });
+
+tl.play();
+tl.pause();
+tl.reverse();
+tl.restart();
+tl.seek(0.5);        // 0.5 seconds par jump karo
+tl.progress(0.5);     // 50% progress par jump karo
+tl.timeScale(2);      // 2x speed par play karo
+tl.timeScale(0.5);    // half speed par play karo</code></pre>
+
+  <pre><code class="language-javascript">gsap.to(".box", {
+  x: 300,
+  onStart: () => console.log("started"),
+  onUpdate: () => console.log("every frame"),
+  onComplete: () => console.log("done"),
+  onRepeat: () => console.log("looped again")
+});</code></pre>
+
+  <pre><code class="language-javascript">gsap.to(".loader", {
+  rotation: 360,
+  duration: 1,
+  repeat: -1,        // -1 = infinite
+  ease: "linear"
+});
+
+gsap.to(".pulse", {
+  scale: 1.1,
+  duration: 0.8,
+  repeat: -1,
+  yoyo: true,        // aage-peeche reverse
+  ease: "sine.inOut"
+});</code></pre>
+
+  <h2>2.6 <code>gsap.set()</code>, defaults, aur global config</h2>
+  <pre><code class="language-javascript">// Instantly styles apply karo, koi animation nahi
+gsap.set(".card", { opacity: 0, y: 30 });
+
+// Timeline-wide defaults, har child tween inherit karta hai
+const tl = gsap.timeline({ defaults: { duration: 0.5, ease: "power2.out" } });
+
+// Global config (kam hi chahiye hota hai)
+gsap.config({ nullTargetWarn: false });
+gsap.defaults({ ease: "power2.out", duration: 0.6 }); // pure app mein SAB tweens par apply</code></pre>
+
+  <div class="practice">
+    <div class="h">🎯 Practice — Part 2</div>
+    <ol>
+      <li>Ek timeline banao jo 3 boxes ko sequence mein animate kare, phir second tween ko <code>-=0.2</code> seconds early start karo.</li>
+      <li>Ek timeline mein <code>"reveal"</code> label add karo, phir ek 4th tween ko exactly us label par start karo.</li>
+      <li>12 grid items ko <code>grid: "auto", from: "center"</code> wale 2D stagger se animate karo. <code>from: "start"</code> se compare karo.</li>
+      <li><code>repeat: -1</code> aur <code>ease: "linear"</code> use karke ek infinitely rotating loader banao.</li>
+      <li>Ek paused timeline banao aur Play / Pause / Reverse buttons wire karo.</li>
+    </ol>
+  </div>
+
+  <div class="project">
+    <div class="h">🛠️ Mini-Project 2: Animated Hero Section</div>
+    <pre><code class="language-xml">&lt;section class="hero"&gt;
+  &lt;h1 class="hero-title"&gt;Build animations that feel alive&lt;/h1&gt;
+  &lt;p class="hero-subtitle"&gt;A hands-on GSAP course for 2026&lt;/p&gt;
+  &lt;button class="hero-cta"&gt;Get Started&lt;/button&gt;
+  &lt;img class="hero-image" src="..." /&gt;
+&lt;/section&gt;</code></pre>
+    <pre><code class="language-javascript">const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+tl.from(".hero-title", { opacity: 0, y: 40, duration: 0.8 })
+  .from(".hero-subtitle", { opacity: 0, y: 20, duration: 0.6 }, "-=0.4")
+  .from(".hero-cta", { opacity: 0, scale: 0.8, duration: 0.5 }, "-=0.3")
+  .from(".hero-image", { opacity: 0, x: 60, duration: 1 }, "-=0.5");</code></pre>
+    <p><strong>Aapka task:</strong> hero image mein ek subtle infinite floating animation add karo (<code>yoyo: true, repeat: -1</code>) jo entrance timeline complete hone ke baad start ho, <code>onComplete</code> use karke.</p>
+  </div>
+
+  <hr>
+  <h1 class="part">Part 3 — Scroll-Driven Animation (ScrollTrigger)</h1>
+
+  <p>ScrollTrigger woh plugin hai jiske liye GSAP sabse zyada jaana jaata hai. Ye kisi bhi tween ya timeline ki playback ko user ke scroll position se link karta hai. Ye 2025 se free hai aur <strong>kisi bhi</strong> scroll container ke saath kaam karta hai.</p>
+  <pre><code class="language-javascript">import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);</code></pre>
+
+  <h2>3.1 Fundamentals: trigger, start, end, markers</h2>
+  <pre><code class="language-javascript">gsap.to(".box", {
+  x: 400,
+  scrollTrigger: {
+    trigger: ".box",   // element jo animation trigger karta hai
+    start: "top 80%",  // jab .box ka TOP viewport mein 80% neeche pahunche
+    end: "top 30%",    // jab .box ka TOP viewport mein 30% neeche pahunche
+    markers: true       // 🔴 sirf dev ke liye visual debug markers
+  }
+});</code></pre>
+
+  <div class="callout">⚠️ Hamesha <code>markers: true</code> ke saath develop karo — production ke liye ise hata dena.</div>
+
+  <h2>3.2 <code>scrub</code> aur <code>pin</code> — do sabse important properties</h2>
+  <pre><code class="language-javascript">gsap.to(".box", {
+  x: 500,
+  scrollTrigger: {
+    trigger: ".section",
+    start: "top top",
+    end: "+=1000",     // ye active rehte hue 1000px scroll karo
+    scrub: true          // instantly scroll position se synced
+    // scrub: 1          // YA: smoother feel ke liye 1 second ka "catch-up" lag
+  }
+});</code></pre>
+
+  <pre><code class="language-javascript">ScrollTrigger.create({
+  trigger: ".panel",
+  start: "top top",
+  end: "+=100%",   // ek extra viewport-height scroll ke liye pinned raho
+  pin: true
+});</code></pre>
+
+  <pre><code class="language-javascript">gsap.timeline({
+  scrollTrigger: {
+    trigger: ".panel",
+    start: "top top",
+    end: "+=1500",
+    pin: true,
+    scrub: 1
+  }
+})
+  .from(".panel h2", { opacity: 0, y: 60 })
+  .from(".panel img", { opacity: 0, scale: 0.8 }, "-=0.3");</code></pre>
+
+  <div class="callout">⚠️ GSAP pinned element ko ek <code>.pin-spacer</code> <code>&lt;div&gt;</code> mein wrap kar deta hai. Pinning ke baad CSS toote toh is wrapper ko check karo — ye expected behavior hai, bug nahi.</div>
+
+  <h2>3.3 Timelines + ScrollTrigger</h2>
+  <p>Koi bhi GSAP timeline apne constructor mein directly <code>scrollTrigger</code> config le sakti hai — pehle poori story ko normal timeline ki tarah banao, phir end mein scroll control attach karo.</p>
+
+  <h2>3.4 <code>toggleActions</code> aur scroll callbacks</h2>
+  <pre><code class="language-javascript">gsap.from(".card", {
+  opacity: 0,
+  y: 40,
+  scrollTrigger: {
+    trigger: ".card",
+    start: "top 85%",
+    toggleActions: "play none none reverse"
+    // = enter par play, leave par kuch nahi,
+    //   enter-back par kuch nahi, leave-back par reverse
+  }
+});</code></pre>
+
+  <pre><code class="language-javascript">ScrollTrigger.create({
+  trigger: ".section",
+  start: "top center",
+  onEnter: () => console.log("entered"),
+  onLeave: () => console.log("left, scrolling down"),
+  onEnterBack: () => console.log("re-entered, scrolling up"),
+  onLeaveBack: () => console.log("left, scrolling up"),
+  once: true // sirf pehli baar fire, phir khud-b-khud kill
+});</code></pre>
+
+  <h2>3.5 Lists ko efficiently animate karne ke liye <code>batch()</code></h2>
+  <pre><code class="language-javascript">ScrollTrigger.batch(".list-item", {
+  start: "top 85%",
+  onEnter: batch => gsap.from(batch, { opacity: 0, y: 30, stagger: 0.15, overwrite: true })
+});</code></pre>
+
+  <div class="practice">
+    <div class="h">🎯 Practice — Part 3</div>
+    <ol>
+      <li>Ek section banao jo pehli baar view mein aane par <code>&lt;h2&gt;</code> ko fade/slide karke laaye, <code>toggleActions: "play none none reverse"</code> use karke.</li>
+      <li>Ek pinned section (<code>pin: true</code>) banao jo <code>+=800</code> pixels scroll tak fixed rahe jabki ek image <code>scrub: 1</code> se 1 se 1.5 scale ho.</li>
+      <li><code>ScrollTrigger.batch()</code> use karke 20 items ki list ko stagger-reveal karo.</li>
+      <li>Kisi bhi upar ke example mein <code>markers: true</code> add karo aur describe karo lines kya represent karti hain.</li>
+    </ol>
+  </div>
+
+  <div class="project">
+    <div class="h">🛠️ Mini-Project 3: Pinned Storytelling Section + Parallax</div>
+  </div>
+
+  <hr>
+  <h1 class="part">Part 4 — <code>gsap.matchMedia()</code></h1>
+  <p>Responsive aur accessible animation ke liye — real production sites ko mobile vs desktop par different (ya zero) animation chahiye hoti hai, aur <code>prefers-reduced-motion</code> ko respect karna chahiye. <code>gsap.matchMedia()</code> dono ko cleanly handle karta hai, aur breakpoint exit hone par khud cleanup bhi kar leta hai.</p>
+
+  <pre><code class="language-javascript">let mm = gsap.matchMedia();
+
+mm.add("(min-width: 800px)", () => {
+  // desktop-only pinned scroll section
+  gsap.timeline({ scrollTrigger: { trigger: ".panel", pin: true, scrub: 1 } })
+    .to(".panel img", { scale: 1.4 });
+});
+
+mm.add("(max-width: 799px)", () => {
+  // simpler mobile version, no pinning
+  gsap.from(".panel img", { opacity: 0, scrollTrigger: { trigger: ".panel" } });
+});
+
+mm.add("(prefers-reduced-motion: reduce)", () => {
+  gsap.set(".panel *", { clearProps: "all" }); // motion ko effectively disable karo
+});</code></pre>
+
+</div>
+
+<script>
+  hljs.highlightAll();
+
+  document.querySelectorAll('pre').forEach(function(pre){
+    var btn = document.createElement('button');
+    btn.className = 'copy-btn';
+    btn.type = 'button';
+    btn.textContent = 'Copy';
+    btn.addEventListener('click', function(){
+      var code = pre.querySelector('code');
+      var text = code ? code.innerText : pre.innerText;
+      navigator.clipboard.writeText(text).then(function(){
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(function(){
+          btn.textContent = 'Copy';
+          btn.classList.remove('copied');
+        }, 1500);
+      });
+    });
+    pre.appendChild(btn);
+  });
+</script>
+</body>
+</html>
